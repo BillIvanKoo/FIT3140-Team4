@@ -24,6 +24,17 @@ class LED {
             this.interval = null
         }
     }
+
+    toggleLED() {
+        this.state = this.state ? 0: 1;
+        b.digitalWrite(this.name, this.state);
+    }
+    
+    blinkSlow() {
+        var timer = setInterval(() => this.toggleLED(),700);
+        setTimeout(() => clearInterval(timer),4900);
+        setTimeout(() => this.turnOff(), 5010);
+    }
 }
 
 module.exports = LED;

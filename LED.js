@@ -35,6 +35,24 @@ class LED {
         setTimeout(() => clearInterval(timer),4900);
         setTimeout(() => this.turnOff(), 5010);
     }
+
+    blinkSlowOnce() {
+        var timer = setInterval(() => this.toggleLED(),900);
+        setTimeout(() => clearInterval(timer),1990);
+        setTimeout(() => this.turnOff(), 2200);
+    }
+    
+    blinkFastTwice() {
+        var timer = setInterval(() => this.toggleLED(),450);
+        setTimeout(() => clearInterval(timer),1990);
+        setTimeout(() => this.turnOff(), 2200);
+    }
+    
+    blinkSlowOnce_FastTwice(){
+        this.blinkSlowOnce()
+        setTimeout(() => this.blinkFastTwice(), 2500);
+    }
+
 }
 
 module.exports = LED;

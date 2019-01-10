@@ -36,8 +36,31 @@ class LED {
     
     blinkSlow() {
         this.interval = setInterval(() => this.toggleLED(),1000);
-
     }
+
+    blinkSlowOnce() {
+        b.digitalWrite(this.name, 1)
+        setTimeout(() => b.digitalWrite(this.name, 0), 1000)
+    }
+    
+    blinkFastOnce() {
+        b.digitalWrite(this.name, 1)
+        setTimeout(() => b.digitalWrite(this.name, 0), 100)
+    }
+    
+    blinkSlowOnceFastTwice(){
+        this.blinkSlowOnce()
+        setTimeout(() => this.blinkFastOnce(), 2000)
+        setTimeout(() => this.blinkFastOnce(), 2200)
+    }
+    
+    blinkSlowOnceFastTwiceInterval(){
+        this.interval = setInterval(() => this.blinkSlowOnceFastTwice(), 3000)
+    }
+
+
+
+
 }
 
 module.exports = LED;

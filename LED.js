@@ -48,6 +48,15 @@ class LED {
         setTimeout(() => b.digitalWrite(this.name, 0), 100)
     }
     
+    blinkSlowFast() {
+        this.blinkSlowOnce();
+        setTimeout(() => this.blinkFastOnce(), 2000);
+    }
+    
+    blinkSlowFastInterval() {
+        this.interval = setInterval(() => this.blinkSlowFast(), 3000)
+    }
+	
     blinkSlowOnceFastTwice(){
         this.blinkSlowOnce()
         setTimeout(() => this.blinkFastOnce(), 2000)

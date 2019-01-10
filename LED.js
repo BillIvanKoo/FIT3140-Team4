@@ -30,28 +30,28 @@ class LED {
         b.digitalWrite(this.name, this.state);
     }
     
-    blinkSlow() {
-        var timer = setInterval(() => this.toggleLED(),700);
-        setTimeout(() => clearInterval(timer),4900);
-        setTimeout(() => this.turnOff(), 5010);
+    blinkSlowOnce() {
+        b.digitalWrite(this.name, 1)
+        setTimeout(() => b.digitalWrite(this.name, 0), 1000)
+    }
+    
+    blinkFastOnce() {
+        b.digitalWrite(this.name, 1)
+        setTimeout(() => b.digitalWrite(this.name, 0), 100)
+    }
+    
+    blinkSlowOnceFastTwice(){
+        this.blinkSlowOnce()
+        setTimeout(() => this.blinkFastOnce(), 2000)
+        setTimeout(() => this.blinkFastOnce(), 2200)
+    }
+    
+    blinkSlowOnceFastTwiceInterval(){
+        this.interval = setInterval(() => this.blinkSlowOnceFastTwice(), 3000)
     }
 
-    blinkSlowOnce() {
-        var timer = setInterval(() => this.toggleLED(),900);
-        setTimeout(() => clearInterval(timer),1990);
-        setTimeout(() => this.turnOff(), 2200);
-    }
-    
-    blinkFastTwice() {
-        var timer = setInterval(() => this.toggleLED(),450);
-        setTimeout(() => clearInterval(timer),1990);
-        setTimeout(() => this.turnOff(), 2200);
-    }
-    
-    blinkSlowOnce_FastTwice(){
-        this.blinkSlowOnce()
-        setTimeout(() => this.blinkFastTwice(), 2500);
-    }
+
+
 
 }
 

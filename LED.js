@@ -24,6 +24,14 @@ class LED {
             this.interval = null
         }
     }
+	
+	blinkFast() {
+        var this1 = this
+        this.interval = setInterval(function() {
+                this1.state = this1.state ? 0:1;
+                b.digitalWrite(this1.name, this1.state)
+            },100);
+    }
 }
 
 module.exports = LED;

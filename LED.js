@@ -31,9 +31,7 @@ class LED {
     }
     
     blinkSlow() {
-        var timer = setInterval(() => this.toggleLED(),700);
-        setTimeout(() => clearInterval(timer),4900);
-        setTimeout(() => this.turnOff(), 5010);
+        this.interval = setInterval(() => this.toggleLED(),1000);
     }
 }
 

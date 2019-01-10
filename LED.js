@@ -24,12 +24,20 @@ class LED {
             this.interval = null
         }
     }
-
+	
     toggleLED() {
         this.state = this.state ? 0: 1;
         b.digitalWrite(this.name, this.state);
     }
+  
+    blinkFast() {
+        this.interval = setInterval(() => this.toggleLED(),100);
+    }
     
+    blinkSlow() {
+        this.interval = setInterval(() => this.toggleLED(),1000);
+    }
+
     blinkSlowOnce() {
         b.digitalWrite(this.name, 1)
         setTimeout(() => b.digitalWrite(this.name, 0), 1000)

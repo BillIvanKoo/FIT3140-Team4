@@ -25,12 +25,18 @@ class LED {
         }
     }
 	
-	blinkFast() {
-        var this1 = this
-        this.interval = setInterval(function() {
-                this1.state = this1.state ? 0:1;
-                b.digitalWrite(this1.name, this1.state)
-            },100);
+    toggleLED() {
+        this.state = this.state ? 0: 1;
+        b.digitalWrite(this.name, this.state);
+    }
+  
+    blinkFast() {
+        this.interval = setInterval(() => this.toggleLED(),100);
+    }
+    
+    blinkSlow() {
+        this.interval = setInterval(() => this.toggleLED(),1000);
+
     }
 }
 

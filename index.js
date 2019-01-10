@@ -1,7 +1,7 @@
 var b = require('bonescript');
 
 var inputButton = 'P8_19';
-var outputButton = 'P8_13';
+var outputLed = 'P8_13';
 var debounceDuration = 350;
 var arrayInputs = [];
 var startTime;
@@ -13,9 +13,8 @@ var LED = require("./LED.js");
 var ledFunctions;
 
 
-ledFunctions = new LED('P8_13');
+ledFunctions = new LED(outputLed);
 b.pinMode(inputButton, b.INPUT);
-b.pinMode(outputButton, b.OUTPUT);
 setInterval(check,20);
 function check(){
     b.digitalRead(inputButton, checkButton);
@@ -24,10 +23,10 @@ function check(){
 
 function checkOneInput(arrayInputs) {
      if (arrayInputs[0] == "click") {
-         b.digitalWrite(outputButton, b.HIGH);
+         b.digitalWrite(outputLed, b.HIGH);
       } else {
           console.log("closed");
-         b.digitalWrite(outputButton, b.LOW);
+         b.digitalWrite(outputLed, b.LOW);
          ledFunctions.turnOff();
      }
 }

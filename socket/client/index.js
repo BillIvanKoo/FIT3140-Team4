@@ -5,7 +5,7 @@ var client = '/client';
 var beaglebone = '/beaglebone';
 
 app.get(client, function(req, res){
-    res.sendFile(__dirname + '/client.html');
+    res.sendFile(__dirname + '/index.html');
 });
 
 io

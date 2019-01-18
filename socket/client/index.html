@@ -6,15 +6,31 @@
         </script>
     </head>
     <body>
-        <div id="app"></div>
+        <button id="ping">
+            Start Ping
+        </button>
     </body>
     <script>
-        var app = document.getElementById("app")
-        socket.on('press', function(msg) {
-            var received_time = new Date()
-            var pressed_time = new Date(msg.time)
-            var time_taken =  received_time - pressed_time
-            console.log(time_taken);
+        var button = document.getElementById("ping")
+        var time_start = new Date()
+        var pong_count = 0
+        socket.on("pong_client", function() {
+            pong_count++;
+            if (pong_count == 100) {
+                var time_end = new Date()
+                var time_taken = time_end - time_start
+                // average time is divided by 200, to get one way communcation speed
+                var avg_time = time_taken / 200
+                console.log(avg_time);
+            } else {
+                socket.emit("ping_beaglebone");
+            }
         })
+        button.onmousedown = function() {
+            console.log("ping started")
+            pong_count = 0
+            time_start = new Date()
+            socket.emit("ping_beaglebone")
+        }
     </script>
 </html>

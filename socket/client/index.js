@@ -12,14 +12,19 @@ io
 .of(client)
 .on('connection', function(socket){
     console.log('a client connected');
+    socket.on("ping_beaglebone", function(){
+        console.log("ping")
+        io.of(beaglebone).emit("ping_beaglebone")
+    })
 });
 
 io
 .of(beaglebone)
 .on('connection', function(socket) {
     console.log('a beaglebone connected');
-    socket.on('press', function(msg){
-        io.of(client).emit('press', msg);
+    socket.on("pong_client", function(){
+        console.log("pong")
+        io.of(client).emit("pong_client");
     })
 })
 

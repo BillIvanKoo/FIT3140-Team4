@@ -11,11 +11,9 @@
 <body>
     
      <script>
-
         window.onload = function() {
-            listenData('beagle');
+            testListenToBeagle();
         };
-
       // Initialize Firebase
       // TODO: Replace with your project's customized code snippet
         var config = {
@@ -30,7 +28,6 @@
     </script>
     <h1>Client side</h1>
    
-
    <div> 
        
         <p id="listenArea"></p>
@@ -38,7 +35,9 @@
     <div>
         <button onclick="updateData('client', new Date())">Send date to beaglebone</button>
     </div>
-
+    <div>
+        <button onclick="testUpdateBeagle('client')">Test transfer speed</button>
+    </div>
 </body>
 
 

@@ -57,7 +57,7 @@ function onValueChange(snapshot) {
           initializedPong = true; //Prevent initialization from getting incorrect start time (Initialization also triggers this function).
         } else {
             console.log("Pong received");
-            updateCounter('client', start);
+            updateCounter('client');
         }
     }
 

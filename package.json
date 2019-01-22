@@ -1,0 +1,24 @@
+{
+  "name": "fit3140-team4",
+  "version": "1.0.0",
+  "description": "| Github      | Student ID | Student email |\r | ----------- | ---------- | ------------- |\r | BillIvanKoo |   28694120 |      bkoo0001 |\r | thestch     |   27731138 |        scteo6 |\r | wtan0031    |   29611393 |      wtan0031 |\r | sriharan123 |   26539608 |        shar88 |",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BillIvanKoo/FIT3140-Team4.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BillIvanKoo/FIT3140-Team4/issues"
+  },
+  "homepage": "https://github.com/BillIvanKoo/FIT3140-Team4#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0",
+    "socket.io-client": "^2.2.0"
+  }
+}

@@ -12,13 +12,20 @@ io
 .of(client)
 .on('connection', function(socket){
     console.log('a client connected');
-    socket.on("sound_alarm", function(){
-        io.of(beaglebone).emit("sound_alarm")
+    socket.on("sound_alarm", function(msg){
+        console.log(msg);
+        io.of(beaglebone).emit("sound_alarm", msg)
     })
-    socket.on("lock_safe", function(){
-        io.of(beaglebone).emit("lock_safe")
+    socket.on("lock_safe", function(msg){
+        io.of(beaglebone).emit("lock_safe", msg)
     })
 });
+
+io
+.of(beaglebone)
+.on('connection', function(socket){
+    console.log('a beaglebone connected');
+})
 
 http.listen(8889, function(){
     console.log('listening on *:8889');

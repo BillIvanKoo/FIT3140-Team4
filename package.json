@@ -4,7 +4,7 @@
   "description": "| Github      | Student ID | Student email |\r | ----------- | ---------- | ------------- |\r | BillIvanKoo |   28694120 |      bkoo0001 |\r | thestch     |   27731138 |        scteo6 |\r | wtan0031    |   29611393 |      wtan0031 |\r | sriharan123 |   26539608 |        shar88 |",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha test/test.js"
   },
   "repository": {
     "type": "git",
@@ -20,5 +20,9 @@
     "express": "^4.16.4",
     "socket.io": "^2.2.0",
     "socket.io-client": "^2.2.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
   }
 }

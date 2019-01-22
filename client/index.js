@@ -25,7 +25,25 @@ io
 .of(beaglebone)
 .on('connection', function(socket){
     console.log('a beaglebone connected');
-})
+    socket.on("roberry", function(){
+        io.of(client).emit("roberry");
+    })
+    socket.on("fire", function(){
+        io.of(client).emit("fire");
+    })
+    socket.on("medical", function(){
+        io.of(client).emit("medical");
+    })
+    socket.on("natural", function(){
+        io.of(client).emit("natural");
+    })
+    socket.on("cancel_signal", function(){
+        io.of(client).emit("cancel_signal");
+    })
+    socket.on("disconnect", function(){
+        io.of(client).emit("beaglebone_disconnect");
+    })
+});
 
 http.listen(8889, function(){
     console.log('listening on *:8889');

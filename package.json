@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha test/test.js",
+    "socket": "node ./client/index.js",
     "dev": "webpack-dev-server --mode development --progress --hot --open",
     "build": "webpack --mode production --progress"
   },

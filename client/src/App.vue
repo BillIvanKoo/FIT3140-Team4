@@ -1,29 +1,27 @@
 <template>
-  <div>
-    <el-header>
-      <img :src="logo">
-      <p v-if="connected">Connected <i style="color:green" class="el-icon-success"/></p>
-      <p v-else>Waiting for Connection <i class="el-icon-loading"/></p>
-    </el-header>
-    <el-main>
-      <el-button type="warning" @click="sound_alarm">Sound Alarm</el-button>
-      <el-button type="danger" @click="lock_safe">Lock Safe</el-button>
-    </el-main>
-  </div>
+  <el-container>
+    <img :src="logo" />
+    <header-logo :connected="connected" class="headerlogo"/>
+    <warning-list :warnings="warnings" class="warninglist"/>
+    <response-toolbar @warn="emitToSocket" class="footertool"/>
+  </el-container>
 </template>
 
 <script>
 import Vue from 'vue';
-import Layout from 'element-ui';
-import Button from 'element-ui';
-import Icon from 'element-ui';
+import { Container, Icon, Button, Card } from 'element-ui';
 import io from 'socket.io-client';
 
-Vue.use(Layout);
-Vue.use(Button);
-Vue.use(Icon);
+import logo from './assets/logo.png';
 
-import logo from './assets/logo.png'
+import HeaderLogo from './components/HeaderLogo.vue';
+import ResponseToolbar from './components/ResponseToolbar.vue';
+import WarningList from './components/WarningList.vue'
+
+Vue.use(Container);
+Vue.use(Icon);
+Vue.use(Button);
+Vue.use(Card);
 
 export default {
   name: 'app',
@@ -31,21 +29,120 @@ export default {
     return {
       logo,
       connected: false,
-      socket: io('localhost:8889/client')
+      socket: io('localhost:8889/client'),
+      warnings: [
+        {
+          type: 'robbery',
+          time: new Date(2019, 0, 15)
+        },
+        {
+          type: 'fire',
+          time: new Date(2019, 0, 14)
+        },
+        {
+          type: 'medical',
+          time: new Date(2019, 0, 13)
+        },
+        {
+          type: 'natural',
+          time: new Date(2019, 0, 12)
+        },
+        {
+          type: 'robbery',
+          time: new Date(2019, 0, 11)
+        },
+        {
+          type: 'fire',
+          time: new Date(2019, 0, 10)
+        },
+        {
+          type: 'medical',
+          time: new Date(2019, 0, 9)
+        },
+        {
+          type: 'natural',
+          time: new Date(2019, 0, 8)
+        },
+        {
+          type: 'robbery',
+          time: new Date(2019, 0, 7)
+        },
+        {
+          type: 'fire',
+          time: new Date(2019, 0, 6)
+        },
+        {
+          type: 'medical',
+          time: new Date(2019, 0, 5)
+        },
+        {
+          type: 'natural',
+          time: new Date(2019, 0, 4)
+        }
+      ]
     };
   },
   mounted() {
     this.socket.on('connect', ()=>{
       this.connected = true
     })
+    this.socket.on('disconnect', ()=>{
+      this.connected = false
+    })
+    this.socket.on('robbery', ()=>{
+      this.warnings.shift({
+        type: 'robbery',
+        time: new Date()
+      })
+    })
+    this.socket.on('fire', ()=>{
+      this.warnings.shift({
+        type: 'fire',
+        time: new Date()
+      })
+    })
+    this.socket.on('medical', ()=>{
+      this.warnings.shift({
+        type: 'medical',
+        time: new Date()
+      })
+    })
+    this.socket.on('natural', ()=>{
+      this.warnings.shift({
+        type: 'natural',
+        time: new Date()
+      })
+    })
+    this.socket.on('cancel_signal', ()=>{
+      this.warnings.shift({
+        type: 'cancel_signal',
+        time: new Date()
+      })
+    })
   },
   methods: {
-    sound_alarm() {
-      this.socket.emit('sound_alarm')
-    },
-    lock_safe() {
-      this.socket.emit('lock_safe')
+    emitToSocket(event){
+      this.socket.emit(event)
     }
+  },
+  components: {
+    HeaderLogo, ResponseToolbar, WarningList
   }
 };
 </script>
+
+<style scoped>
+  .headerlogo {
+    position: fixed;
+    top: 0;
+    width: 95%;
+  }
+
+  
+  .footertool {
+    position: fixed;
+    width: 100%;
+    bottom: 5%;
+    text-align: center;
+  }
+</style>

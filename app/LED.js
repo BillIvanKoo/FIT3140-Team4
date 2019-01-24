@@ -20,11 +20,19 @@ class LED {
         //Set pin mode for LED output.
         b.pinMode(ledName, 'out')
     }
+    
+    /*
+        Turn on the LED without intervals.
+    */
+    turnOn() {
+         b.digitalWrite(this.name, b.HIGH);
+    }
 
     /*
         Turn off the LED and clears the interval so that new intervals can be added.
     */
     turnOff() {
+        b.digitalWrite(this.name, b.LOW);
         var this1 = this
         if (this.interval != null) {
             this.state = 0

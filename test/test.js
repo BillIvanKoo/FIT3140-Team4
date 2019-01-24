@@ -15,7 +15,6 @@ describe("Simulate Client to Beaglebone signal",function(){
 
         });
         bb.on("sound_alarm", function(msg){
-          console.log(msg);
           msg.should.equal('sound the alarm!')
           bb.disconnect();
           client.disconnect();
@@ -34,7 +33,6 @@ describe("Simulate Client to Beaglebone signal",function(){
 
         });
         bb.on("lock_safe", function(msg){
-          console.log(msg);
           msg.should.equal('lock the safe!')
           bb.disconnect();
           client.disconnect();
@@ -91,7 +89,6 @@ describe("Simulation Beaglebone to Client", function() {
 
         });
         client.on("medical", function(msg){
-          console.log(msg);
           msg.should.equal('inform the ambulance!')
           client.disconnect();
           bb.disconnect();
@@ -110,7 +107,6 @@ describe("Simulation Beaglebone to Client", function() {
 
         });
         client.on("natural", function(msg){
-          console.log(msg);
           msg.should.equal('inform the authority!')
           bb.disconnect();
           client.disconnect();
@@ -129,7 +125,6 @@ describe("Simulation Beaglebone to Client", function() {
 
         });
         client.on("cancel_signal", function(msg){
-          console.log(msg);
           msg.should.equal('cancel the signal!')
           bb.disconnect();
           client.disconnect();

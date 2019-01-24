@@ -29,11 +29,13 @@ class SocketFunctions {
             //Sound alarm.
             this.socket.on("sound_alarm", function(){
                 console.log("sounding alarm");
+                this.ledFunctions.turnOff();
                 this.ledFunctions.blinkFast();
             }.bind(this))
             //Lock safe.
             this.socket.on("lock_safe", function(){
                 console.log("locking safe");
+                this.ledFunctions.turnOff();
                 this.ledFunctions.turnOn();
             }.bind(this))
         }.bind(this))

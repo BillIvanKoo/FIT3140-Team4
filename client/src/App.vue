@@ -30,56 +30,7 @@ export default {
       logo,
       connected: false,
       socket: io('localhost:8889/client'),
-      warnings: [
-        {
-          type: 'robbery',
-          time: new Date(2019, 0, 15)
-        },
-        {
-          type: 'fire',
-          time: new Date(2019, 0, 14)
-        },
-        {
-          type: 'medical',
-          time: new Date(2019, 0, 13)
-        },
-        {
-          type: 'natural',
-          time: new Date(2019, 0, 12)
-        },
-        {
-          type: 'robbery',
-          time: new Date(2019, 0, 11)
-        },
-        {
-          type: 'fire',
-          time: new Date(2019, 0, 10)
-        },
-        {
-          type: 'medical',
-          time: new Date(2019, 0, 9)
-        },
-        {
-          type: 'natural',
-          time: new Date(2019, 0, 8)
-        },
-        {
-          type: 'robbery',
-          time: new Date(2019, 0, 7)
-        },
-        {
-          type: 'fire',
-          time: new Date(2019, 0, 6)
-        },
-        {
-          type: 'medical',
-          time: new Date(2019, 0, 5)
-        },
-        {
-          type: 'natural',
-          time: new Date(2019, 0, 4)
-        }
-      ]
+      warnings: []
     };
   },
   mounted() {
@@ -90,31 +41,31 @@ export default {
       this.connected = false
     })
     this.socket.on('robbery', ()=>{
-      this.warnings.shift({
+      this.warnings.unshift({
         type: 'robbery',
         time: new Date()
       })
     })
     this.socket.on('fire', ()=>{
-      this.warnings.shift({
+      this.warnings.unshift({
         type: 'fire',
         time: new Date()
       })
     })
     this.socket.on('medical', ()=>{
-      this.warnings.shift({
+      this.warnings.unshift({
         type: 'medical',
         time: new Date()
       })
     })
     this.socket.on('natural', ()=>{
-      this.warnings.shift({
+      this.warnings.unshift({
         type: 'natural',
         time: new Date()
       })
     })
     this.socket.on('cancel_signal', ()=>{
-      this.warnings.shift({
+      this.warnings.unshift({
         type: 'cancel_signal',
         time: new Date()
       })

@@ -13,7 +13,6 @@ io
 .on('connection', function(socket){
     console.log('a client connected');
     socket.on("sound_alarm", function(msg){
-        console.log(msg);
         io.of(beaglebone).emit("sound_alarm", msg)
     })
     socket.on("lock_safe", function(msg){
@@ -26,9 +25,10 @@ io
 .of(beaglebone)
 .on('connection', function(socket){
     console.log('a beaglebone connected');
+
     socket.on("robbery", function(msg){
         console.log(msg);
-        io.of(client).emit("robbery", msg);
+        io.of(client).emit("robbery", msg);  
     })
     socket.on("fire", function(msg){
         console.log(msg);

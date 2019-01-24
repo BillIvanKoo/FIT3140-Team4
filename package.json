@@ -4,7 +4,10 @@
   "description": "| Github      | Student ID | Student email |\r | ----------- | ---------- | ------------- |\r | BillIvanKoo |   28694120 |      bkoo0001 |\r | thestch     |   27731138 |        scteo6 |\r | wtan0031    |   29611393 |      wtan0031 |\r | sriharan123 |   26539608 |        shar88 |",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/mocha test/test.js"
+    "test": "./node_modules/.bin/mocha test/test.js",
+    "socket": "node ./client/index.js",
+    "dev": "webpack-dev-server --mode development --progress --hot --open",
+    "build": "webpack --mode production --progress"
   },
   "repository": {
     "type": "git",
@@ -17,12 +20,28 @@
   },
   "homepage": "https://github.com/BillIvanKoo/FIT3140-Team4#readme",
   "dependencies": {
+    "element-ui": "^2.4.11",
     "express": "^4.16.4",
     "socket.io": "^2.2.0",
-    "socket.io-client": "^2.2.0"
+    "socket.io-client": "^2.2.0",
+    "vue": "^2.5.22"
   },
   "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-component": "^1.1.1",
     "chai": "^4.2.0",
-    "mocha": "^5.2.0"
+    "copy-webpack-plugin": "^4.6.0",
+    "css-loader": "^2.1.0",
+    "file-loader": "^3.0.1",
+    "html-webpack-plugin": "^3.2.0",
+    "mocha": "^5.2.0",
+    "vue-loader": "^15.5.1",
+    "vue-style-loader": "^4.1.2",
+    "vue-template-compiler": "^2.5.22",
+    "webpack": "^4.29.0",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }

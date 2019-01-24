@@ -17,6 +17,7 @@ io
         io.of(beaglebone).emit("sound_alarm", msg)
     })
     socket.on("lock_safe", function(msg){
+        console.log(msg);
         io.of(beaglebone).emit("lock_safe", msg)
     })
 });
@@ -25,23 +26,29 @@ io
 .of(beaglebone)
 .on('connection', function(socket){
     console.log('a beaglebone connected');
-    socket.on("roberry", function(){
-        io.of(client).emit("roberry");
+    socket.on("robbery", function(msg){
+        console.log(msg);
+        io.of(client).emit("robbery", msg);
     })
-    socket.on("fire", function(){
-        io.of(client).emit("fire");
+    socket.on("fire", function(msg){
+        console.log(msg);
+        io.of(client).emit("fire", msg);
     })
-    socket.on("medical", function(){
-        io.of(client).emit("medical");
+    socket.on("medical", function(msg){
+        console.log(msg);
+        io.of(client).emit("medical", msg);
     })
-    socket.on("natural", function(){
-        io.of(client).emit("natural");
+    socket.on("natural", function(msg){
+        console.log(msg);
+        io.of(client).emit("natural",msg);
     })
-    socket.on("cancel_signal", function(){
-        io.of(client).emit("cancel_signal");
+    socket.on("cancel_signal", function(msg){
+        console.log(msg);
+        io.of(client).emit("cancel_signal",msg);
     })
-    socket.on("disconnect", function(){
-        io.of(client).emit("beaglebone_disconnect");
+    socket.on("disconnect", function(msg){
+        console.log(msg);
+        io.of(client).emit("beaglebone_disconnect",msg);
     })
 });
 

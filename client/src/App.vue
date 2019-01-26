@@ -70,6 +70,9 @@ export default {
         time: new Date()
       })
     })
+    this.socket.on('ping_client', ()=>{
+        this.socket.emit('pong_beaglebone')
+    })
   },
   methods: {
     emitToSocket(event){

@@ -18,6 +18,9 @@ io
     socket.on("lock_safe", function(msg){
         io.of(beaglebone).emit("lock_safe", msg)
     })
+    socket.on("pong_beaglebone", function(msg){
+        io.of(beaglebone).emit("pong_beaglebone", msg)
+    })
 });
 
 io
@@ -42,6 +45,9 @@ io
     })
     socket.on("disconnect", function(msg){
         io.of(client).emit("beaglebone_disconnect",msg);
+    })   
+    socket.on("ping_client", function(msg){
+        io.of(client).emit("ping_client",msg);
     })
 });
 

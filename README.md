@@ -58,6 +58,23 @@ npm run socket
 npm run dev
 ```
 
+### How to Unit Test
+1. Start the server
+```bash
+npm run socket
+```
+2. In a new terminal, run the test
+```bash
+npm test
+```
+
+### How to Performance Test
+1. Start the client and server as mentioned above.
+2. Run BbToClientPerformance.js in beaglebone.
+3. Wait until beaglebone is connected.
+4. Click the button once, ping will start.
+5. The result will be logged in beaglebone in milliseconds
+
 ### Repository Structure
 ```bash
 .
@@ -83,6 +100,7 @@ npm run dev
 ├── package-lock.json
 ├── README.md (documentation)
 ├── test (test folder)
-│   └── test.js
+│   ├── test.js (unit test)
+|   └── BbToClientPerformance.js (performnace test)
 └── webpack.config.js (webpack config file)
 ```

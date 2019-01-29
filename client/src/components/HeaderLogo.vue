@@ -6,7 +6,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
+import { Header } from 'element-ui';
 
+Vue.use(Header);
 export default {
     props: ['connected', 'logo']
 }

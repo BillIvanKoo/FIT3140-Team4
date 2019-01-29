@@ -2,7 +2,7 @@
     <el-footer>
         <el-checkbox v-model="timed" class="footer-item">Timed Alarm</el-checkbox>
         <el-input-number v-model="sec" :min="1" :disabled="!timed" controls-position="right" class="footer-item"/>
-        <el-button type="warning" @click="$emit('warn', 'sound_alarm')" class="footer-item">Sound Alarm</el-button>
+        <el-button type="warning" @click="soundAlarm" class="footer-item">Sound Alarm</el-button>
         <el-button type="danger" @click="$emit('warn', 'lock_safe')" class="footer-item">Lock Safe</el-button>
     </el-footer>
 </template>
@@ -19,6 +19,15 @@ export default {
         return {
             sec: 1,
             timed: false
+        }
+    },
+    methods: {
+        soundAlarm() {
+            this.timed ? this.$emit('warn', 'sound_alarm', {
+                time: this.sec * 1000
+            }) : this.$emit('warn', 'sound_alarm', {
+                time: null
+            })
         }
     }
 }

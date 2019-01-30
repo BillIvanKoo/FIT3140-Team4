@@ -38,6 +38,10 @@ class SocketFunctions {
                 this.ledFunctions.turnOff();
                 this.ledFunctions.turnOn();
             }.bind(this))
+			//Latency checking
+			this.socket.on("latency_ping", function(msg) {
+				this.socket.emit("latency_pong", msg);
+			})
         }.bind(this))
     }
 }

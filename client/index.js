@@ -21,6 +21,9 @@ io
     socket.on("pong_beaglebone", function(msg){
         io.of(beaglebone).emit("pong_beaglebone", msg)
     })
+	socket.on("latency_ping", function(msg) {
+		io.of(beaglebone).emit("latency_ping", msg)
+	})
 });
 
 io

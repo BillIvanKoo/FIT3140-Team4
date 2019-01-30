@@ -18,9 +18,13 @@ io
     socket.on("lock_safe", function(msg){
         io.of(beaglebone).emit("lock_safe", msg)
     })
+	
+	//	performace test
     socket.on("pong_beaglebone", function(msg){
         io.of(beaglebone).emit("pong_beaglebone", msg)
     })
+	
+	// latency
 	socket.on("latency_ping", function(msg) {
 		io.of(beaglebone).emit("latency_ping", msg)
 	})
@@ -48,10 +52,17 @@ io
     })
     socket.on("disconnect", function(msg){
         io.of(client).emit("beaglebone_disconnect",msg);
-    })   
+    })
+	
+	//	performance test
     socket.on("ping_client", function(msg){
         io.of(client).emit("ping_client",msg);
     })
+	
+	//	latency
+	socket.on("latency_pong", function(msg) {
+		io.of(client).emit("latency_pong", msg);
+	})
 });
 
 http.listen(8889, function(){

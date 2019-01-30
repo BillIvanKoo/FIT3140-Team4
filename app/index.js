@@ -23,7 +23,7 @@ var ledFunctions = new LED(outputLed);
 var socketFunctions = new SocketFunctions(ledFunctions);
 
 //Main starts here.
-button = new Button(inputButton, outputLed, socketFunctions);
+button = new Button(inputButton, ledFunctions, socketFunctions);
 button.intervalInit(20);
 
 

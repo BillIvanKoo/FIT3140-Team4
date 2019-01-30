@@ -27,10 +27,15 @@ class SocketFunctions {
         this.socket.on('connect', function() {
             console.log('client connected');
             //Sound alarm.
-            this.socket.on("sound_alarm", function(){
+            this.socket.on("sound_alarm", function(msg){
                 console.log("sounding alarm");
                 this.ledFunctions.turnOff();
                 this.ledFunctions.blinkFast();
+                if (msg.time) {
+                    setTimeout(() => {
+                        this.ledFunctions.turnOff();
+                    }, msg.time)
+                }
             }.bind(this))
             //Lock safe.
             this.socket.on("lock_safe", function(){

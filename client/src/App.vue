@@ -75,8 +75,8 @@ export default {
     })
   },
   methods: {
-    emitToSocket(event){
-      this.socket.emit(event)
+    emitToSocket(event, msg){
+      msg ? this.socket.emit(event, msg) : this.socket.emit(event)
     }
   },
   components: {

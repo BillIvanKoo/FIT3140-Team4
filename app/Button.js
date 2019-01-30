@@ -57,7 +57,7 @@ class Button {
                         break;
                         
                     case "hold":
-                        console.log("No actions set for this combination")
+                        this.outputLed.turnOff();
                         break;
                 }
                 break;

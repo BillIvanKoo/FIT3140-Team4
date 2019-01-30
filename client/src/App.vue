@@ -1,7 +1,7 @@
 <template>
   <el-container>
     <img :src="logo" />
-    <header-logo :connected="connected" class="headerlogo"/>
+    <header-status :latency="latency" :connected="connected" class="headerstatus"/>
     <warning-list :warnings="warnings" class="warninglist"/>
     <response-toolbar @warn="emitToSocket" class="footertool"/>
   </el-container>
@@ -14,7 +14,7 @@ import io from 'socket.io-client';
 
 import logo from './assets/logo.png';
 
-import HeaderLogo from './components/HeaderLogo.vue';
+import HeaderStatus from './components/HeaderStatus.vue';
 import ResponseToolbar from './components/ResponseToolbar.vue';
 import WarningList from './components/WarningList.vue'
 
@@ -30,7 +30,9 @@ export default {
       logo,
       connected: false,
       socket: io('localhost:8889/client'),
-      warnings: []
+      warnings: [],
+      latency: -1, // -1 means beaglebone not connected
+      latency_timeout: null,
     };
   },
   mounted() {
@@ -71,7 +73,22 @@ export default {
       })
     })
     this.socket.on('ping_client', ()=>{
-        this.socket.emit('pong_beaglebone')
+      this.socket.emit('pong_beaglebone')
+    })
+
+    // latency and beaglebone connection checking
+    setInterval(()=>{
+      this.socket.emit("latency_ping", {
+        start: new Date()
+      })
+      this.latency_timeout = setTimeout(()=>{
+        this.latency = -1
+      }, 200)
+    }, 2000)
+
+    this.socket.on("latency_pong", msg => {
+      clearTimeout(this.latency_timeout);
+      this.latency = new Date() - new Date(msg.start)
     })
   },
   methods: {
@@ -80,13 +97,13 @@ export default {
     }
   },
   components: {
-    HeaderLogo, ResponseToolbar, WarningList
+    HeaderStatus, ResponseToolbar, WarningList
   }
 };
 </script>
 
 <style scoped>
-  .headerlogo {
+  .headerstatus {
     position: fixed;
     top: 0;
     width: 95%;

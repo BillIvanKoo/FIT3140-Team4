@@ -46,7 +46,7 @@ class SocketFunctions {
 			//Latency checking
 			this.socket.on("latency_ping", function(msg) {
 				this.socket.emit("latency_pong", msg);
-			})
+			}.bind(this))
         }.bind(this))
     }
 }

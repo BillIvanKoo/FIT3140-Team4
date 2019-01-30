@@ -27,7 +27,7 @@ export default {
                 this.text = "There is a medical emergency!"
                 break;
             case "cancel_signal":
-                this.text = "Last Signal has been cancelled."
+                this.text = "Last signal has been cancelled."
                 break; 
             default:
                 break;

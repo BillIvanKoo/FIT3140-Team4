@@ -1,6 +1,6 @@
 <template>
     <el-card>
-        <span>{{ warning.time.toUTCString() }}</span>
+        <span>{{ warning.time.toLocaleString() }}</span>
         {{ text }}
     </el-card>
 </template>

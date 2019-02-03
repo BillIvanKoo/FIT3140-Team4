@@ -3,7 +3,7 @@ var should = require('chai').should()
 var io = require('socket.io-client');
 var socketURL = 'http://localhost:8889';
 
-describe("Simulate Client to Beaglebone signal",function(){
+describe("Simulation Client to Beaglebone",function(){
     it('Should sound alarm at beaglebone', function(done){
         var client;
         var bb = io.connect(socketURL + '/beaglebone');
@@ -132,3 +132,41 @@ describe("Simulation Beaglebone to Client", function() {
         })
     });
 });
+
+describe("Simulation Latency", function(){
+  it('Should ping to beaglebone', function(done){
+    var client;
+    var beaglebone = io.connect(socketURL + '/beaglebone');
+    var time = new Date()
+    beaglebone.on('connect', function(){
+      client = io.connect(socketURL + '/client');
+      client.on('connect', function(){
+        client.emit("latency_ping", { time: time });
+      })
+    })
+    beaglebone.on("latency_ping", function(msg){
+      new Date(msg.time).getTime().should.equal(time.getTime())
+      client.disconnect();
+      beaglebone.disconnect();
+      done();
+    })
+  })
+
+  it('Should pong to client', function(done){
+    var beaglebone;
+    var client = io.connect(socketURL + '/client');
+    var time = new Date()
+    client.on('connect', function(){
+      beaglebone = io.connect(socketURL + '/beaglebone');
+      beaglebone.on('connect', function(){
+        beaglebone.emit("latency_pong", { time: time });
+      })
+    })
+    client.on("latency_pong", function(msg){
+      new Date(msg.time).getTime().should.equal(time.getTime())
+      beaglebone.disconnect();
+      client.disconnect();
+      done();
+    })
+  })
+})
